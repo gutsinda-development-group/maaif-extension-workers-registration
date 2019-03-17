@@ -11,7 +11,9 @@ import Typography from "@material-ui/core/Typography";
 import IndividualProfileForm from "./IndividualProfileForm";
 import QualificationsForm from "./QualificationsForm";
 import ExperienceForm from "./ExperienceForm";
-import VerificationForm from "./VerificationForm";
+
+import IndividualOperationsForm from "./IndividualOperationsForm";
+import IndividualVerificationForm from "./IndividualVerificationForm";
 
 const styles = theme => ({
   layout: {
@@ -49,8 +51,9 @@ const styles = theme => ({
 
 const steps = [
   "Individual Profile",
-  "Qualifications & Training",
+  "Qualifications",
   "Work Experience",
+  "Operations",
   "Submit"
 ];
 
@@ -63,7 +66,9 @@ function getStepContent(step) {
     case 2:
       return <ExperienceForm />;
     case 3:
-      return <VerificationForm />;
+      return <IndividualOperationsForm />;
+    case 4:
+      return <IndividualVerificationForm />;
     default:
       throw new Error("Unknown step");
   }
@@ -117,10 +122,10 @@ class Checkout extends React.Component {
               {activeStep === steps.length ? (
                 <React.Fragment>
                   <Typography variant="h5" gutterBottom>
-                    Thank you for your registering your organization.
+                    Thank you for your registering as an Individual.
                   </Typography>
                   <Typography variant="subtitle1">
-                    Your organization number is #2001539. We have emailed the
+                    Your Individual number is #2001539. We have emailed the
                     details to the contact person.
                   </Typography>
                 </React.Fragment>
@@ -143,7 +148,7 @@ class Checkout extends React.Component {
                       className={classes.button}
                     >
                       {activeStep === steps.length - 1
-                        ? "Register organization"
+                        ? "Register Individual"
                         : "Next"}
                     </Button>
                   </div>

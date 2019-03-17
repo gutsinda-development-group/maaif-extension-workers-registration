@@ -5,14 +5,18 @@ import Grid from "@material-ui/core/Grid";
 
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
-
+import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
-
+import Input from "@material-ui/core/Input";
+import Select from "@material-ui/core/Select";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
-
+import ListItemText from "@material-ui/core/ListItemText";
+import MenuItem from "@material-ui/core/MenuItem";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
+
+import Chip from "@material-ui/core/Chip";
 
 const styles = theme => ({
   root: {
@@ -47,44 +51,43 @@ const MenuProps = {
   }
 };
 
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder"
+const animalProductions = [
+  "Animal Production",
+  "Large livestock (cattle)",
+  "small livestock (Sheep, goats)",
+  "Micro livestock (Rabbits)",
+  "Birds (Chicken, Turkeys, ducks)",
+  "Bees",
+  "Fisheries"
 ];
 
-const centralDistricts = [
-  "Buikwe",
-  "Bukomansimbi",
-  "Butambala",
-  "Buvuma",
-  "Gomba",
-  "Kalangala"
+const cropProductions = [
+  "Traditional cash crops (tea, cocoa, coffee, sugarcanes)",
+  "Cereals and legumes (maize, rice, sorghum, beans, soya, cowpeas, etc) ",
+  "Fruits/ Vegetables",
+  "Commercial Trees"
 ];
-
-const easternDistricts = ["Amuria", "Budaka", "Bududa"];
+const sectors = [
+  "Public",
+  "Private",
+  "Academia",
+  "NGO",
+  "Farmers Organization"
+];
 
 class ExperienceForm extends React.Component {
-  state = {
-    name: [],
-    centralDistricts: [],
-    easternDistricts: [],
-    northernDistricts: [],
-    westernDistricts: [],
-    beneficiaries: [],
-    beneficiaryCategory: [],
-    beneficiaryGender: []
+  state = { sectors: [], animalProduction: [], cropProduction: [] };
+
+  onChangeSectors = event => {
+    this.setState({ sectors: event.target.value });
   };
 
-  onChangeCentralDistricts = event => {
-    this.setState({ centralDistricts: event.target.value });
+  onChangeCrops = event => {
+    this.setState({ cropProduction: event.target.value });
+  };
+
+  onChangeAnimal = event => {
+    this.setState({ animalProduction: event.target.value });
   };
 
   render() {
@@ -141,6 +144,177 @@ class ExperienceForm extends React.Component {
               //value={this.state.multiline}
               //onChange={this.handleChange("multiline")}
               margin="normal"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="select-multiple-checkbox">Sector</InputLabel>
+              <Select
+                multiple
+                value={this.state.sectors}
+                onChange={this.onChangeSectors}
+                input={<Input id="select-multiple-checkbox" />}
+                renderValue={selected => selected.join(", ")}
+                MenuProps={MenuProps}
+              >
+                {sectors.map(name => (
+                  <MenuItem key={name} value={name}>
+                    <Checkbox checked={this.state.sectors.indexOf(name) > -1} />
+                    <ListItemText primary={name} />
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} />
+          <Grid item xs={12} sm={12}>
+            <FormControl component="fieldset" className={classes.formControl}>
+              <FormLabel component="legend">
+                Agricultural Sector focus
+              </FormLabel>
+              <RadioGroup
+                aria-label="Agricultural sector focus"
+                name="agriculturalSectorFocus"
+                className={classes.group}
+                value={this.state.value}
+                onChange={this.handleChange}
+              >
+                <FormControlLabel
+                  value="general"
+                  control={<Radio />}
+                  label="General"
+                />
+                <FormControlLabel
+                  value="specific"
+                  control={<Radio />}
+                  label="Specific"
+                />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography
+              variant="body1"
+              color="primary"
+              style={{ fontWeight: "bold" }}
+              gutterBottom
+            >
+              Animal Production:
+            </Typography>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="select-multiple-chip" color="primary">
+                Animal Production
+              </InputLabel>
+              <Select
+                multiple
+                value={this.state.animalProduction}
+                color="primary"
+                onChange={this.onChangeAnimal}
+                input={<Input id="select-multiple-chip" />}
+                renderValue={selected => (
+                  <div className={classes.chips}>
+                    {selected.map(value => (
+                      <Chip
+                        key={value}
+                        label={value}
+                        className={classes.chip}
+                      />
+                    ))}
+                  </div>
+                )}
+                MenuProps={MenuProps}
+              >
+                {animalProductions.map(name => (
+                  <MenuItem key={name} value={name}>
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography
+              variant="body1"
+              color="primary"
+              style={{ fontWeight: "bold" }}
+              gutterBottom
+            >
+              Crop Production:
+            </Typography>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="select-multiple-chip" color="primary">
+                Crop Production
+              </InputLabel>
+              <Select
+                multiple
+                value={this.state.cropProduction}
+                onChange={this.onChangeCrops}
+                input={<Input id="select-multiple-chip" />}
+                renderValue={selected => (
+                  <div className={classes.chips}>
+                    {selected.map(value => (
+                      <Chip
+                        key={value}
+                        label={value}
+                        className={classes.chip}
+                      />
+                    ))}
+                  </div>
+                )}
+                MenuProps={MenuProps}
+              >
+                {cropProductions.map(name => (
+                  <MenuItem key={name} value={name}>
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography
+              variant="body1"
+              color="primary"
+              style={{ fontWeight: "bold" }}
+              gutterBottom
+            >
+              Post-Harvest handling:
+            </Typography>
+
+            <FormControlLabel
+              control={<Checkbox color="secondary" name="saveCard" value="" />}
+              label="Post-Harvest handling"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography
+              variant="body1"
+              color="primary"
+              style={{ fontWeight: "bold" }}
+              gutterBottom
+            >
+              Agribusiness Development services :
+            </Typography>
+
+            <FormControlLabel
+              control={<Checkbox color="secondary" name="saveCard" value="" />}
+              label="Agribusiness Development services
+            "
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography
+              variant="body1"
+              color="primary"
+              style={{ fontWeight: "bold" }}
+              gutterBottom
+            >
+              Consultancy:
+            </Typography>
+
+            <FormControlLabel
+              control={<Checkbox color="secondary" name="saveCard" value="" />}
+              label="Consultancy"
             />
           </Grid>
         </Grid>
