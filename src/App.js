@@ -3,7 +3,9 @@ import { CssBaseline, withStyles } from "@material-ui/core";
 import { Switch, Route } from "react-router-dom";
 
 import Header from "./components/Layout/Header";
-import RegisterIndividual from "./components/Individual/RegisterIndividual";
+import OrganizationWizard from "./components/organization/OrganizationWizard";
+import IndividualWizard from "./components/individual/IndividualWizard";
+
 import LandingPage from "./pages/home";
 
 const styles = theme => ({
@@ -22,8 +24,8 @@ const App = ({ classes }) => (
     <main className={classes.main}>
       <Switch>
         <Route exact path="/" component={LandingPage} />
-        <Route path="/individual" component={RegisterIndividual} />
-        <Route path="/organization" />
+        <Route path="/individual" component={IndividualWizard} />
+        <Route path="/organization" component={OrganizationWizard} />
         <Route path="/practioner" />
         <Route path="/foreigner" />
       </Switch>
