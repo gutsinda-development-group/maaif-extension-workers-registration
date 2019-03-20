@@ -43,31 +43,41 @@ const MenuProps = {
   }
 };
 
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder"
-];
-
 const centralDistricts = [
   "Buikwe",
   "Bukomansimbi",
   "Butambala",
   "Buvuma",
   "Gomba",
-  "Kalangala"
+  "Kalangala",
+  "Kalungu",
+  "Kampala"
 ];
 
-const easternDistricts = ["Amuria", "Budaka", "Bududa"];
-const northernDistricts = ["Abim", "Adjumani", "Agago"];
-const westernDistricts = ["Buhweju", "Buliisa", "Bundibugyo"];
+const easternDistricts = [
+  "Amuria",
+  "Budaka",
+  "Bududa",
+  "Bugiri",
+  "Bukedea",
+  "Bukwa"
+];
+const northernDistricts = [
+  "Abim",
+  "Adjumani",
+  "Agago",
+  "Alebtong",
+  "Amolatar",
+  "Amudat"
+];
+const westernDistricts = [
+  "Buhweju",
+  "Buliisa",
+  "Bundibugyo",
+  "Bushenyi",
+  "Hoima",
+  "Ibanda"
+];
 
 const beneficiaries = ["Farmers", "Students", "Field Extension workers"];
 

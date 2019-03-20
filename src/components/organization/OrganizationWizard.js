@@ -8,6 +8,9 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+
+import Header from "../Layout/Header";
+
 import ProfileForm from "./ProfileForm";
 import StaffTrainingForm from "./StaffTrainingForm";
 import OperationsForm from "./OperationsForm";
@@ -99,6 +102,7 @@ class Checkout extends React.Component {
     return (
       <React.Fragment>
         <CssBaseline />
+        <Header />
         <br />
         <br />
         <main className={classes.layout}>

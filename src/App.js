@@ -2,11 +2,16 @@ import React from "react";
 import { CssBaseline, withStyles } from "@material-ui/core";
 import { Switch, Route } from "react-router-dom";
 
-import Header from "./components/Layout/Header";
+import SignIn from "./components/authentication/SignIn";
+import SignUp from "./components/authentication/SignUp";
+
+//import SignIn from "./components/authentication/SignUp";
+
+//import Header from "./components/Layout/Header";
 import OrganizationWizard from "./components/organization/OrganizationWizard";
 import IndividualWizard from "./components/individual/IndividualWizard";
 
-import LandingPage from "./pages/home";
+//import LandingPage from "./pages/home";
 
 const styles = theme => ({
   main: {
@@ -20,14 +25,13 @@ const styles = theme => ({
 const App = ({ classes }) => (
   <React.Fragment>
     <CssBaseline />
-    <Header />
+    {/*<Header />*/}
     <main className={classes.main}>
       <Switch>
-        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/" component={SignIn} />
+        <Route exact path="/signup" component={SignUp} />
         <Route path="/individual" component={IndividualWizard} />
         <Route path="/organization" component={OrganizationWizard} />
-        <Route path="/practioner" />
-        <Route path="/foreigner" />
       </Switch>
     </main>
   </React.Fragment>
